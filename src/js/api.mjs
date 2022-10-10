@@ -7,6 +7,7 @@ export const endpoints = {
   loggedInUser: `profiles/${localStorage.getItem("socialName")}`,
   updateMedia: "profiles/" + localStorage.getItem("socialName") + "/media",
   makeComment: "posts/<id>/comment",
+  profiles: "profiles",
 };
 
 //FETCH FUNCTION
