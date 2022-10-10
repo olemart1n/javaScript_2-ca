@@ -1,3 +1,10 @@
+/**
+ *
+ * @param {Object} data array
+ * @returns {string}  string that tells something about when post was created
+ *
+ */
+
 export const timeAgo = (data) => {
   const posted = data.substring(10, 0);
   const atLogin = new Date().toJSON().slice(0, 10);
