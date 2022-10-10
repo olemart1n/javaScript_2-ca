@@ -9,9 +9,19 @@ export const endpoints = {
   makeComment: "posts/<id>/comment",
   profiles: "profiles",
 };
-
-//FETCH FUNCTION
-const { base } = endpoints;
+export const { base } = endpoints;
+/**
+ * FETCH REQUEST
+ * @param {string} endpoint string
+ * @param {Object} header object with header options
+ * @returns {promise} returns data from an api
+ * @example
+ * ```js
+ * fetchCall(endpoint, options).then(data => {
+ * console.log(data)
+ * })
+ * ```
+ */
 export const fetchCall = async (endpoint, header) => {
   try {
     const request = await fetch(base + endpoint, header);
