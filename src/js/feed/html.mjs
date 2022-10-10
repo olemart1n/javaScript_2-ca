@@ -2,10 +2,11 @@ import { checkForMedia } from "../helpers/checkForMedia.js";
 import { checkForTags } from "../helpers/checkForTags.js";
 import { checkForAvatar } from "../helpers/checkForAvatar.js";
 import { timeAgo } from "../helpers/checkTimeAgo.js";
+// import { checkForReactions } from "../helpers/checkForReacts.mjs";
 
 export const htmlToRender = (
   div,
-  { author, created, title, tags, body, id, comments, _count, media }
+  { author, created, title, tags, body, id, comments, _count, media, reactions }
 ) => {
   div.insertAdjacentHTML(
     "beforeend",
@@ -27,13 +28,10 @@ export const htmlToRender = (
         <button class="text-grey-ish btn p-2 flex-grow-1 comment-button" data-comment-button="${id}">Comments &darr; (<span id="comment-counter${id}">${
       comments.length
     }</span>)
-      </button>
-        <div>
-        <p style="font-size:20px" class="p-0 m-0 opacity-75 like-button" data-post-id="${id}">🚜</p>
-        <p style="font-size:15px" class="p-0 m-0 like-count">${
-          _count.reactions
-        } likes</p>
-        </div>
+        </button>
+        <div class="reactions-container${id} emojibox d-flex align-content-center flex-row-reverse flex-wrap w-50"></div>
+        <div class="p-2">
+          <button class="btn smiley d-flex align-items-center p-0" data-get-button="${id}" data-bs-toggle="modal" data-bs-target="#emoji-modal" style="font-size: 25px; max-height: 30px;">🙂</button>
         </div>
           </div>
           <!-- comment section. collapsed by default -->
@@ -48,3 +46,7 @@ export const renderHtml = (div, apiData) => {
     htmlToRender(div, element);
   });
 };
+
+{
+  /* <emoji-picker></emoji-picker>; */
+}
