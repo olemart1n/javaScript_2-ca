@@ -10978,6 +10978,9 @@ span {
 emoji-picker {
   width: 100%;
   height: 400px;
+  --num-columns: 6;
+  --emoji-size: 2rem;
+  --background: gray;
 }
 
 /*# sourceMappingURL=styles.css.map */
