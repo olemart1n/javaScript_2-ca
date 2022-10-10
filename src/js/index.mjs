@@ -1,7 +1,6 @@
 import { fetchCall, endpoints, fetchOptions } from "./api.mjs";
 import { renderHtml } from "./feed/html.mjs";
 import { commentList } from "./afterRendered/comments.mjs";
-import { likeClick } from "./afterRendered/likeClick.mjs";
 import {
   searchForComments,
   searchForTags,
@@ -11,9 +10,13 @@ import {
 } from "./filters.mjs";
 import { logOutClick } from "./helpers/logout.js";
 import { sharePost } from "./formListeners/newPost.mjs";
-
-const { postswithac } = endpoints;
-const { getWithJwt } = fetchOptions;
+import {
+  openEmojiPicker,
+  checkForsmileyClick,
+} from "./afterRendered/sendEmoji.mjs";
+import { existingReactions } from "./afterRendered/checkForReacts.mjs";
+const { postswithac, updateMedia } = endpoints;
+const { getWithJwt, update } = fetchOptions;
 const searchForm = document.querySelector("#search-form");
 const filterBtnPictures = document.querySelector("#filter-pictures");
 const filterBtnTags = document.querySelector("#filter-tags");
@@ -37,7 +40,9 @@ fetchCall(postswithac, getWithJwt).then((data) => {
   console.log(data);
   renderHtml(postContainer, data);
   commentList();
-  likeClick();
+  existingReactions();
+  openEmojiPicker();
+  checkForsmileyClick();
   spinner.classList.add("collapse");
 });
 filterBtnPictures.addEventListener("click", () => {

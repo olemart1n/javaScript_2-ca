@@ -31,3 +31,8 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 span {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+
+emoji-picker {
+  width: 100%;
+  height: 400px;
+}
