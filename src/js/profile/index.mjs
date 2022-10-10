@@ -29,6 +29,7 @@ searchForm.addEventListener("submit", (e) => {
 
 fetchCall(loggedInUser, getWithJwt).then((data) => {
   profileDetails(data);
+  console.log(data);
 });
 
 fetchCall(postswithac, getWithJwt).then((data) => {

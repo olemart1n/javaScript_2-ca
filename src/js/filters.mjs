@@ -1,6 +1,6 @@
-import { htmlToRender } from "./feed/html.mjs";
+import { htmlToRender, renderHtml } from "./feed/html.mjs";
 import { fetchCall, endpoints, fetchOptions } from "./api.mjs";
-const { postswithac } = endpoints;
+const { postswithac, profiles } = endpoints;
 const { getWithJwt } = fetchOptions;
 const postContainer = document.querySelector(".index-post-box");
 const searchInput = document.querySelector("#search-input");
@@ -82,18 +82,14 @@ export const searchForId = () => {
   postContainer.textContent = "";
   fetchCall(postswithac, getWithJwt).then((data) => {
     const filtered = data.find((id) => {
-      return id.id === +searchInput.value;
+      return id.id === Number(searchInput.value);
     });
-    filtered.forEach((element) => {
-      htmlToRender(postContainer, element);
-    });
-    postContainer.insertAdjacentHTML(
-      "afterbegin",
-      `
-            <p>Results (${filteredTitles.length})</p>
-            `
-    );
-    // commentList();
+    if (filtered) {
+      htmlToRender(postContainer, filtered);
+    } else {
+      postContainer.innerHTML = "can not fint post";
+    }
+    commentList();
     // likeClick();
   });
 };
