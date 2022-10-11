@@ -19,29 +19,29 @@ logOutClick();
 profileButtons(followingButton, posts, followingList);
 profileButtons(wallButton, followingList, posts);
 searchForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (/\d/.test(searchInput.value)) {
-    searchForId();
-  } else {
-    searchForTitle();
-  }
+    e.preventDefault();
+    if (/\d/.test(searchInput.value)) {
+        searchForId();
+    } else {
+        searchForTitle();
+    }
 });
 
 fetchCall(loggedInUser, getWithJwt).then((data) => {
-  profileDetails(data);
-  console.log(data);
+    profileDetails(data);
+    console.log(data);
 });
 
 fetchCall(postswithac, getWithJwt).then((data) => {
-  const checkForPosts = data.filter((data) => {
-    return data.author.name === localStorage.getItem("socialName");
-  });
-  if (checkForPosts.length === 0) {
-    const noPosts = document.querySelector("#no-posts-yet");
-    noPosts.classList.remove("collapse");
-  }
-  loggedInPosts(posts, checkForPosts);
-  commentList();
+    const checkForPosts = data.filter((data) => {
+        return data.author.name === localStorage.getItem("socialName");
+    });
+    if (checkForPosts.length === 0) {
+        const noPosts = document.querySelector("#no-posts-yet");
+        noPosts.classList.remove("collapse");
+    }
+    loggedInPosts(posts, checkForPosts);
+    commentList();
 });
 
 updatePost();

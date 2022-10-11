@@ -5,18 +5,16 @@ import { timeAgo } from "../helpers/checkTimeAgo.js";
 // import { checkForReactions } from "../helpers/checkForReacts.mjs";
 
 export const htmlToRender = (
-  div,
-  { author, created, title, tags, body, id, comments, _count, media, reactions }
+    div,
+    { author, created, title, tags, body, id, comments, _count, media, reactions }
 ) => {
-  div.insertAdjacentHTML(
-    "beforeend",
-    `<div class="m-0 p-0">
+    div.insertAdjacentHTML(
+        "beforeend",
+        `<div class="m-0 p-0">
           <div class="d-flex flex-column flex-sm-row align-items-center text-muted mb-5 mt-1 pt-3 pb-3 border-top bg-primary">
           ${checkForAvatar(author)}
           <strong class="d-block text-gray-dark col">${author.name}</strong>
-          <p class="text-muted col-sm-3 fs-6"style="font-size: 0.7em">${timeAgo(
-            created
-          )}</p>
+          <p class="text-muted col-sm-3 fs-6"style="font-size: 0.7em">${timeAgo(created)}</p>
         </div>
         <div class="m-2 ">
           <h5>${title}</h5>
@@ -26,8 +24,8 @@ export const htmlToRender = (
         </div>
         <div class="d-flex">
         <button class="text-grey-ish btn p-2 flex-grow-1 comment-button" data-comment-button="${id}">Comments &darr; (<span id="comment-counter${id}">${
-      comments.length
-    }</span>)
+            comments.length
+        }</span>)
         </button>
         <div class="reactions-container${id} emojibox d-flex align-content-center flex-row-reverse flex-wrap w-50"></div>
         <div class="p-2">
@@ -38,15 +36,15 @@ export const htmlToRender = (
           <div class="m-2 collapse comment-section text-center" id="${id}">
           </div>
         `
-  );
+    );
 };
 
 export const renderHtml = (div, apiData) => {
-  apiData.forEach((element) => {
-    htmlToRender(div, element);
-  });
+    apiData.forEach((element) => {
+        htmlToRender(div, element);
+    });
 };
 
 {
-  /* <emoji-picker></emoji-picker>; */
+    /* <emoji-picker></emoji-picker>; */
 }

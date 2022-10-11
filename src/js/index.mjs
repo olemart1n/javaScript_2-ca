@@ -2,18 +2,15 @@ import { fetchCall, endpoints, fetchOptions } from "./api.mjs";
 import { renderHtml } from "./feed/html.mjs";
 import { commentList } from "./afterRendered/comments.mjs";
 import {
-  searchForComments,
-  searchForTags,
-  searchForPictures,
-  searchForId,
-  searchForTitle,
+    searchForComments,
+    searchForTags,
+    searchForPictures,
+    searchForId,
+    searchForTitle,
 } from "./filters.mjs";
 import { logOutClick } from "./helpers/logout.js";
 import { sharePost } from "./formListeners/newPost.mjs";
-import {
-  openEmojiPicker,
-  checkForsmileyClick,
-} from "./afterRendered/sendEmoji.mjs";
+import { openEmojiPicker, checkForsmileyClick } from "./afterRendered/sendEmoji.mjs";
 import { existingReactions } from "./afterRendered/checkForReacts.mjs";
 const { postswithac, updateMedia } = endpoints;
 const { getWithJwt, update } = fetchOptions;
@@ -28,29 +25,29 @@ const spinner = document.querySelector(".spinner-border");
 logOutClick();
 sharePost();
 searchForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (/\d/.test(searchInput.value)) {
-    searchForId();
-  } else {
-    searchForTitle();
-  }
+    e.preventDefault();
+    if (/\d/.test(searchInput.value)) {
+        searchForId();
+    } else {
+        searchForTitle();
+    }
 });
 
 fetchCall(postswithac, getWithJwt).then((data) => {
-  console.log(data);
-  renderHtml(postContainer, data);
-  commentList();
-  existingReactions();
-  openEmojiPicker();
-  checkForsmileyClick();
-  spinner.classList.add("collapse");
+    console.log(data);
+    renderHtml(postContainer, data);
+    commentList();
+    existingReactions();
+    openEmojiPicker();
+    checkForsmileyClick();
+    spinner.classList.add("collapse");
 });
 filterBtnPictures.addEventListener("click", () => {
-  searchForPictures();
+    searchForPictures();
 });
 filterBtnTags.addEventListener("click", () => {
-  searchForTags();
+    searchForTags();
 });
 filterBtnComments.addEventListener("click", () => {
-  searchForComments();
+    searchForComments();
 });
