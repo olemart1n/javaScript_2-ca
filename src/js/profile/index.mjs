@@ -32,16 +32,18 @@ fetchCall(loggedInUser, getWithJwt).then((data) => {
     console.log(data);
 });
 
-fetchCall(postswithac, getWithJwt).then((data) => {
-    const checkForPosts = data.filter((data) => {
-        return data.author.name === localStorage.getItem("socialName");
-    });
-    if (checkForPosts.length === 0) {
-        const noPosts = document.querySelector("#no-posts-yet");
-        noPosts.classList.remove("collapse");
+fetchCall("posts?_author=true&_comments=true&_reactions=true&limit=500", getWithJwt).then(
+    (data) => {
+        const checkForPosts = data.filter((data) => {
+            return data.author.name === localStorage.getItem("socialName");
+        });
+        if (checkForPosts.length === 0) {
+            const noPosts = document.querySelector("#no-posts-yet");
+            noPosts.classList.remove("collapse");
+        }
+        loggedInPosts(posts, checkForPosts);
+        commentList();
     }
-    loggedInPosts(posts, checkForPosts);
-    commentList();
-});
+);
 
 updatePost();

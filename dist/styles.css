@@ -10983,4 +10983,11 @@ emoji-picker {
   --background: gray;
 }
 
+#logged-in-banner {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
 /*# sourceMappingURL=styles.css.map */

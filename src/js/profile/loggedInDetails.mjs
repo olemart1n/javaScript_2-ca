@@ -6,7 +6,7 @@ export const profileDetails = (data) => {
     loggedInName.textContent = data.name;
     loggedInAvatar.style.backgroundImage = `url(${data.avatar})`;
     if (data.banner.length === 0) {
-        loggedInBanner.insertAdjacentHTML("afterbegin", `no banner`);
+        loggedInBanner.insertAdjacentHTML("afterbegin", ``);
     } else {
         loggedInBanner.style.backgroundImage = `url(${data.banner})`;
     }
