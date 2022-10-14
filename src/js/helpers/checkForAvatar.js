@@ -12,8 +12,8 @@
 
 export const checkForAvatar = (data) => {
     if (data?.avatar?.substring(5, 0) !== "https") {
-        return `<i class="fa-solid fa-user fa-xl m-2 p-0 col-1"></i>`;
+        return `<div class="col col-sm-2"><i class="fa-solid fa-user fa-xl m-2 p-0" ></i></div>`;
     } else {
-        return `<img src="${data?.avatar}" class="col-3 rounded-5 m-2" style="max-height: 45px; max-width: 45px">`;
+        return `<div class="col col-sm-2"><img src="${data?.avatar}" class="rounded-5 m-2" style="height: 45px; width: 45px"></div>`;
     }
 };

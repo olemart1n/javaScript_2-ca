@@ -48,3 +48,12 @@ export const renderHtml = (div, apiData) => {
 {
     /* <emoji-picker></emoji-picker>; */
 }
+
+{
+    /* Add this link in the posts if further work has been done on profile pages
+<a href="/profile/${
+  author.name
+}" class="text-gray-dark col text-dark text-decoration-none"><strong class="d-block">${
+author.name
+}</strong></a> */
+}
