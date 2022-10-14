@@ -14,14 +14,25 @@ export const updatePost = () => {
         if (media.length < 5) {
             update.body = JSON.stringify({ title, tags, body });
         } else {
-            update.body = JSON.stringify({ inputs });
+            update.body = JSON.stringify(inputs);
         }
         fetchCall(posts + e.currentTarget.getAttribute("postId"), update).then((data) => {
             console.log(data);
             updateForm.reset();
             postsContainer.innerHTML = "";
-            fetchCall(postswithac, getWithJwt).then((data) => {
-                loggedInPosts(postsContainer, data);
+            fetchCall(
+                "posts?_author=true&_comments=true&_reactions=true&limit=500",
+                getWithJwt
+            ).then((data) => {
+                const checkForPosts = data.filter((data) => {
+                    return data.author.name === localStorage.getItem("socialName");
+                });
+                if (checkForPosts.length === 0) {
+                    const noPosts = document.querySelector("#no-posts-yet");
+                    noPosts.classList.remove("collapse");
+                }
+                console.log(checkForPosts);
+                loggedInPosts(postsContainer, checkForPosts);
             });
         });
     });
