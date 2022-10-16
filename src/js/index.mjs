@@ -34,7 +34,6 @@ searchForm.addEventListener("submit", (e) => {
 });
 
 fetchCall(postswithac, getWithJwt).then((data) => {
-    console.log(data);
     renderHtml(postContainer, data);
     commentList();
     existingReactions();

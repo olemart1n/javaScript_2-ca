@@ -29,7 +29,6 @@ searchForm.addEventListener("submit", (e) => {
 
 fetchCall(loggedInUser, getWithJwt).then((data) => {
     profileDetails(data);
-    console.log(data);
 });
 
 fetchCall("posts?_author=true&_comments=true&_reactions=true&limit=500", getWithJwt).then(
